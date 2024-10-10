@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import SideBar from '../components/ProductsListPage/SideBar'
-import ProductsNaviagtion from '../components/ProductsListPage/productsNaviagtion'
 import ProductsWithFilters from '../components/ProductsListPage/ProductsWithFilters'
 import { useParams, useSearchParams } from 'react-router-dom'
+import ProductsNaviagtion from '../components/ProductsListPage/productsNaviagtion'
 
 const ProductsList = () => {
     const params = useParams()
