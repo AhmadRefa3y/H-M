@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from 'react'
 import { SearchIcon } from 'lucide-react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 const Search = () => {
-    const [inputData, setInputData] = useState("")
+    const [inputData, setInputData] = useState('')
     const navigate = useNavigate()
 
     const handleInput = (event) => {
@@ -14,10 +13,10 @@ const Search = () => {
     useEffect(() => {
         if (inputData.trim()) {
             navigate(`/search?query=${inputData}`)
+        } else {
+            navigate('/search')
         }
     }, [inputData, navigate])
-
-    
 
     return (
         <div className="sm:flex lg:w-1/4 sm:w-1/2 items-center justify-center lg:justify-start sm:order-2 order-3 lg:order-none w-full mt-2 border-t sm:mt-0 sm:border-t-0 border-[#c8c8c8]">
@@ -29,13 +28,13 @@ const Search = () => {
                     value={inputData}
                     onChange={handleInput}
                 />
-                <SearchIcon className="text-slate-500 cursor-pointer" strokeWidth={1} />
-    
+                <SearchIcon
+                    className="text-slate-500 cursor-pointer"
+                    strokeWidth={1}
+                />
             </div>
         </div>
     )
 }
 
 export default Search
-
-
