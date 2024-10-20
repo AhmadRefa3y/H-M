@@ -18,6 +18,7 @@ import ProductsPage from './routes/ProductsPage' // استيراد الصفحة 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Cart from './routes/Cart'
 import WishList from './routes/WishList'
+import AuthProvider from './providers/AuthProvider'
 
 const router = createBrowserRouter([
     {
@@ -85,9 +86,11 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
+    // <StrictMode>
+    <AuthProvider>
         <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
         </QueryClientProvider>
-    </StrictMode>
+    </AuthProvider>
+    // </StrictMode>
 )

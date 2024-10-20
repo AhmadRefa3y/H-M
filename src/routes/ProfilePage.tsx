@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoIosArrowRoundBack } from 'react-icons/io'
+import useAuth from '../utils/zustand/useAuth'
+import api from '../api'
 
 const ProfilePage = () => {
-    const email = localStorage.getItem('email')
+    const { token, setToken, user, setUser } = useAuth()
+    const [userData, setuser] = useState()
+    const getUser = async () => {
+        try {
+            const res = await api.get('/user')
+            console.log(res.data)
+            setuser(res.data)
+        } catch (error) {
+            console.log(error)
+            setuser(null)
+        }
+    }
+    useEffect(() => {
+        getUser()
+    }, [])
+    console.log(userData)
+
     return (
         <>
             <div className=" flex justify-between mt-20 md:w-auto w-full animate-slideUp relative">
@@ -148,7 +166,7 @@ const ProfilePage = () => {
                     </p>
                     <p className="md:text-sm  text-lg  md:w-auto w-full font-light  text-neutral-500">
                         {' '}
-                        {email}
+                        {user?.email ? user.email : 'لا يوجد'}
                     </p>
                 </div>
             </div>
