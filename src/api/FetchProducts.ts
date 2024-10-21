@@ -37,7 +37,5 @@ export const getProducts = async (filters?: Filters) => {
         }
     })
 
-    console.log(products)
-
     return products
 }

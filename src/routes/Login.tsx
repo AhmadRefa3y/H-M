@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom' // Import useNavigate hook
+import { Link, useNavigate } from 'react-router-dom'
 import LeftSide from '../components/LoginLeftSide'
 import Inputs from '../components/Inputs'
 import useAuth from '../utils/zustand/useAuth'
@@ -17,7 +17,7 @@ const Login = () => {
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/
 
     const navigate = useNavigate()
 
@@ -44,12 +44,12 @@ const Login = () => {
             )
             validEmail = false
         } else {
-            setEmailError('') // مسح رسالة الخطأ إذا كان البريد صحيحًا
+            setEmailError('')
         }
 
         if (!passwordPattern.test(formLoginData.password)) {
             setPasswordError(
-                'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، تشمل حرفًا كبيرًا، حرفًا صغيرًا، ورقمًا.'
+                'يجب أن تحتوي كلمة المرور على 6 أحرف على الأقل، تشمل حرفًا كبيرًا، حرفًا صغيرًا، ورقمًا.'
             )
             validPassword = false
         } else {
@@ -72,8 +72,6 @@ const Login = () => {
                 )
 
                 const result = await response.json()
-                console.log(result)
-
                 if (response.ok) {
                     setToken(result.token)
                     setUser(result.data)

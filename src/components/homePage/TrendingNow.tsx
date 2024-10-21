@@ -8,7 +8,6 @@ const TrendingNow = () => {
         name: 'kids',
         label: 'الاطفال',
     })
-    console.log(filter)
 
     return (
         <div className="flex flex-col items-center justify-center my-5 gap-5 relative">

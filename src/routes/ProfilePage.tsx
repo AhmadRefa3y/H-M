@@ -1,31 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
-import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 import useAuth from '../utils/zustand/useAuth'
 import api from '../api'
 
 const ProfilePage = () => {
-    const { token, setToken, user, setUser } = useAuth()
-    const [userData, setuser] = useState()
-    const getUser = async () => {
-        try {
-            const res = await api.get('/user')
-            console.log(res.data)
-            setuser(res.data)
-        } catch (error) {
-            console.log(error)
-            setuser(null)
-        }
-    }
-    useEffect(() => {
-        getUser()
-    }, [])
-    console.log(userData)
+    const { token, setToken, user } = useAuth()
 
+    useEffect(() => {
+        api.get('/user')
+    }, [])
     return (
         <>
-            <div className=" flex justify-between mt-20 md:w-auto w-full animate-slideUp relative">
+            <div className=" flex justify-between mt-20 md:w-auto w-full animate-slideUp relative px-4">
                 <div className="flex flex-col justify-start gap-10 items-center md:w-auto w-full md:m-0 mb-20  ">
                     <ul className="flex flex-col gap-5  text-gray-700 md:w-auto w-full  ">
                         <li className=" md:w-auto w-full border-solid border-b md:p-0 p-2 border-slate-900 md:border-none">
